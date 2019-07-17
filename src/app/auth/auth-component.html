@@ -1,0 +1,32 @@
+<div class="container">
+    <div id="login" class="signin-card">
+      <img class="header-image" src="assets/Qlogin.png" alt=""  height="85px">
+      <h1 class="display1">Account Login</h1>
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" >
+        <div id="form-login-username" class="form-group">
+            <label for="username" class="float-label">Username or email address</label>
+          <input id="username" class="form-control"  type="text" size="18" alt="login"
+          ngModel name="username" required />
+          <span class="form-highlight"></span>
+          <span class="form-bar"></span>
+          
+        </div>
+        
+        <div id="form-login-password" class="form-group">
+            <label for="password" class="float-label">Password</label>
+          <input id="passwd" class="form-control"  type="password" size="18" alt="password" 
+          ngModel name="password"
+          required>
+          <span class="form-highlight"></span>
+          <span class="form-bar"></span>
+        
+        </div>
+      
+        <div>
+          <button class="btn btn-block btn-success ripple-effect" type="submit" name="Submit" alt="sign in" [disabled]="!loginForm.valid">Sign in</button>  
+        </div>
+    
+        
+      </form>
+    </div>
+    </div>

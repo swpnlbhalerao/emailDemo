@@ -1,0 +1,79 @@
+<app-header></app-header>
+
+
+
+ <div class="container"> 
+  <div class="alert alert-danger" *ngIf="error">
+    <span class="alert-text">
+      {{error.message || error}}
+    </span>
+  </div>
+<!--   <div class="container"> -->
+    <div class="alert alert-success" *ngIf="uploadResponse.message">
+      <span class="alert-text">
+        {{uploadResponse.message}}
+      </span>
+    </div>
+
+    <div class="">
+      <h4 class="display2">Trigger Email</h4>
+      <button type="button" style="float:right" class="btn btn-primary " (click)="download()">Download</button>
+      <form (ngSubmit)="onSubmit(emailForm)" #emailForm="ngForm">
+
+        <div class="col-xs-5">
+          <div class="form-group">
+            <label for="name">Subject</label>
+            <input type="text" id="subject" class=form-control ngModel name="subject" required subject>
+          </div>
+
+          <div class="form-group">
+            <label for="emailBody">Email</label>
+            <textarea rows="4" cols="50" id="emailBody" class=form-control ngModel name="emailBody" required emailBody>
+        </textarea>
+          </div>
+        </div>
+
+      
+        <div class="col-sm-12">
+          <h4>Upload Section</h4>
+          <div id="fileSelector">
+            <input type="file"  style="display :none" id="fileUpload" (change)="onFileChange($event,emailForm)"  ngModel name="fileUpload" required
+              fileUpload #fileInput accept=".csv">
+              <button type="button" (click)="fileInput.click()">Choose Files .. </button>
+              <br>
+              <div class="row uploadList" *ngFor="let file of selectedFiles;let i = index">
+                  <div class="col-sm-4">{{file.name}}</div>
+                  <div class="col-sm-4">
+                    <div class="progress">
+                      <div class="progress-bar bg-success" [ngStyle]="{'width':uploadResponse.uploadProgress+'%'}"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                          <!-- <button type="button" class="btn btn-dark" (click)="item.upload()">Upload</button> -->
+                          <button type="button" class="btn btn-danger" [disabled]="disableCancel" (click)="removeUploadFile(i,emailForm)">Cancel</button>
+                        </div>
+                        <br>
+              </div>                        
+              <br>
+            <!-- 
+            <div class="col-sm-4">
+              <div class="progress">
+                <div class="progress-bar bg-success" [ngStyle]="{'width':uploadResponse.uploadProgress+'%'}"></div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+    
+     
+        <div class="col-sm-4">
+            <button class="btn btn-danger" type="button" name="Submit" alt="Reset" [disabled]=" !emailForm.dirty  "
+            (click)=resetForm(emailForm)>Reset</button> &nbsp;
+            <button class="btn btn-primary" type="submit" name="Submit" alt="Trigger Email"
+              [disabled]="!emailForm.valid || disableBtns">Triggered Email</button>
+          </div>
+
+
+
+      </form>
+    </div>
+  </div>
