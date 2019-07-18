@@ -13,10 +13,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
       this.authservice.authLogin();
- 
-    /* this.service.activateEmmitter.subscribe((doActivate)=>{
-      this.activate=doActivate;
-    }) */
   }
 
 

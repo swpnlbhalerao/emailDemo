@@ -11,8 +11,8 @@ export class FileTriggerService{
 
     downloadFile(){
         var body = {filename:"asas"};
-
-        return this.http.post('http://localhost:4000/user/download',body,{
+        let finalURL = uploadURL+`/download`;
+        return this.http.post(finalURL,body,{
             responseType : 'blob',
             headers:new HttpHeaders().append('Content-Type','application/json')
         });
