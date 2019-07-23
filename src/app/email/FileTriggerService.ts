@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import {HttpClient, HttpHeaders, HttpEventType} from '@angular/common/http';
 import {map} from 'rxjs/operators'
+import * as moment from 'moment';
 
 const uploadURL = `http://localhost:3000`;
 @Injectable({providedIn:'root'})
@@ -15,7 +16,7 @@ export class FileTriggerService{
         return this.http.post(finalURL,body,{
             responseType : 'blob',
             headers:new HttpHeaders().append('Content-Type','application/json')
-        });
+        })
 }
     
 public submitData(data) {
@@ -40,6 +41,15 @@ public submitData(data) {
       }
     })
     );
+  }
+
+   getFileName(fileType:string) : string {
+    console.log(fileType);
+    let fileName = "Demo_"+moment().format("MMMDoYY_hmmss");
+    /* if(fileType === 'text/csv'){
+      fileName=fileName+".csv"
+    } */
+    return fileName;
   }
 
  

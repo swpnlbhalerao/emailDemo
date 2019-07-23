@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FileTriggerService } from './FileTriggerService';
-import { saveAs } from 'file-saver';
+import { getFileNameFromResponseContentDisposition,saveAs } from 'file-saver';
 import { Subscription } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-email',
@@ -103,7 +102,9 @@ export class EmailComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.fileService.downloadFile()
       .subscribe(
         data =>{
-          saveAs(data),
+        //  let fileName=getFileNameFromResponseContentDisposition(data);
+          console.log(data);
+          saveAs(data,this.fileService.getFileName(data.type)),
           this.isLoading=false;
         },
         error => {
