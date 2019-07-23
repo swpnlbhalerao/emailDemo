@@ -22,6 +22,7 @@ export class EmailComponent implements OnInit, OnDestroy {
   error: string;
   disableBtns: boolean = false;
   resetBtn: boolean = false;
+  isLoading : boolean = false;
   private subscriptions: Subscription = new Subscription();
 
   constructor(private fileService: FileTriggerService) {
@@ -38,16 +39,16 @@ export class EmailComponent implements OnInit, OnDestroy {
       if(!triggerEmailForm.valid){
         return ;
       }
-   
+    this.isLoading=true;
     this.disableCancel = true;
     this.disableBtns = true;
     this.error = ''
     let formData = new FormData();
     // formData.append('file', this.selectedfile, this.selectedfile.name);
 
-     /* this.selectedFiles.forEach((file) => {
+      this.selectedFiles.forEach((file) => {
       formData.append("empDetails", file, file.name)
-    })  */
+    }) 
     //formData.append('files', this.selectedFiles);
     formData.append('subject', triggerEmailForm.value.subject)
     formData.append('emailBody', triggerEmailForm.value.emailBody)
@@ -57,10 +58,13 @@ export class EmailComponent implements OnInit, OnDestroy {
       (res) => {
         console.log(res);
         this.uploadResponse = res
+        
+        this.isLoading=false;
       },
       (err) => {
         console.log(err);
         this.error = err
+        this.isLoading=false;
       }
     ));
   }
@@ -91,18 +95,26 @@ export class EmailComponent implements OnInit, OnDestroy {
 
 
   download() {
+    this.isLoading=true;
     this.error = ''
     console.log("download call")
     this.resetBtn = true;
 
     this.subscriptions.add(this.fileService.downloadFile()
       .subscribe(
-        data => saveAs(data),
-        error => this.error = error
+        data =>{
+          saveAs(data),
+          this.isLoading=false;
+        },
+        error => {
+          this.error = error;
+          this.isLoading=false;
+        }
       ));
   }
 
   resetForm(triggerEmailForm: NgForm) {
+    this.isLoading=false;
     this.resetMessage();
     this.resetUploadResponse();
     this.disableCancel = false;

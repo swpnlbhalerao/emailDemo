@@ -8,13 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth-component';
 import { EmailComponent } from './email/email.component';
 import { ErrorInterceptor } from './auth/error-interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AuthComponent,
-    EmailComponent
+    EmailComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
