@@ -32,13 +32,12 @@ export class EmailComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
   }
-
+ 
   onSubmit(triggerEmailForm: NgForm) {
-   
-      if(!triggerEmailForm.valid){
+    this.isLoading =true; 
+    if(!triggerEmailForm.valid){
         return ;
       }
-    this.isLoading=true;
     this.disableCancel = true;
     this.disableBtns = true;
     this.error = ''
@@ -57,8 +56,8 @@ export class EmailComponent implements OnInit, OnDestroy {
       (res) => {
         console.log(res);
         this.uploadResponse = res
-        
-        this.isLoading=false;
+        if(this.uploadResponse.status === 'success')
+        this.isLoading=false; 
       },
       (err) => {
         console.log(err);

@@ -1,11 +1,11 @@
 <app-header></app-header>
 
+  <div *ngIf="isLoading" style="text-align:center" >
+          <app-loader></app-loader>
+          <div class="overlay">
+        </div>
+        </div>
 
-<div *ngIf="isLoading" style="text-align:center" >
-  <app-loader></app-loader>
-  <div class="overlay">
-</div>
-</div>
 
  <div class="container"> 
   <div class="alert alert-danger" *ngIf="error">
@@ -25,6 +25,7 @@
       <button type="button" style="float:right" class="btn btn-primary " (click)="download()">Download</button>
       <form (ngSubmit)="onSubmit(emailForm)" #emailForm="ngForm">
 
+      
         <div class="col-xs-5">
           <div class="form-group">
             <label for="name">Subject</label>
