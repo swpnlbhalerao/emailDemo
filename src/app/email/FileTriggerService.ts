@@ -4,7 +4,7 @@ import {map} from 'rxjs/operators'
 import * as moment from 'moment';
 
 //const uploadURL = `http://localhost:3000`;
-const uploadURL = `http://35.222.249.174:3000`;
+const uploadURL = `http://104.197.166.46:3000`;
 @Injectable({providedIn:'root'})
 export class FileTriggerService{
 
