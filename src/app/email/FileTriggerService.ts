@@ -47,9 +47,9 @@ public submitData(data) {
    getFileName(fileType:string) : string {
     console.log(fileType);
     let fileName = "Demo_"+moment().format("MMMDoYY_hmmss");
-    /* if(fileType === 'text/csv'){
+     if(fileType === 'text/csv'){
       fileName=fileName+".csv"
-    } */
+    } 
     return fileName;
   }
 
