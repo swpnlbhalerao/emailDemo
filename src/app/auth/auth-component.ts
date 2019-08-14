@@ -23,9 +23,18 @@ export class AuthComponent {
     }
     onSubmit(loginForm:NgForm){
         //check login
-         console.log(loginForm);
+        if(!loginForm.valid){
+            return;
+        }
+        if(loginForm.value.username && loginForm.value.username ==='user@quantiphi.com' 
+        && loginForm.value.password && loginForm.value.password === 'quant1ph1'){
+            this.router.navigate(['emailContent'])
+        }else{
+            this.error='please enter valid credentials'
+        }
+
+
         // this.authService.checkLogin(loginForm.value);
-         this.router.navigate(['emailContent'])
      
        }
 

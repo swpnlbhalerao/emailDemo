@@ -1,5 +1,11 @@
 <div class="container">
+    
     <div id="login" class="signin-card">
+        <div class="alert alert-danger" *ngIf="error">
+            <span class="alert-text">
+              {{ error}}
+            </span>
+          </div>
       <img class="header-image" src="assets/Qlogin.png" alt=""  height="85px">
       <h1 class="display1">Account Login</h1>
       <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" >
