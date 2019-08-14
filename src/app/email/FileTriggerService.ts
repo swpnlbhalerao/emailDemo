@@ -3,8 +3,9 @@ import {HttpClient, HttpHeaders, HttpEventType} from '@angular/common/http';
 import {map} from 'rxjs/operators'
 import * as moment from 'moment';
 
-const uploadURL = `http://localhost:3000`;
-//const uploadURL = `http://104.197.166.46:3000`;
+//const uploadURL = `http://localhost:3000`;
+const uploadURL = `http://104.197.166.46:3000`;
+
 @Injectable({providedIn:'root'})
 export class FileTriggerService{
 
